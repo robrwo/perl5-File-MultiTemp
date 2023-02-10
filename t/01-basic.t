@@ -44,7 +44,10 @@ ok openhandle( $files->file_handle("YYY") ), "open filehandle";
 
 $files->close;
 
-my %found = map { $_ => 1 } qw/ WWW XXX YYY ZZZ /;
+my $keys = $files->keys;
+cmp_deeply $keys, set(qw/ WWW XXX YYY /), "keys";
+
+my %found = map { $_ => 1 } (@$keys, 'ZZZ');
 
 for my $file ( $files->files->@* ) {
     my @lines = $file->lines( { chomp => 1 } );

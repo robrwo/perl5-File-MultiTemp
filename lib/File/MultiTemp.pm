@@ -239,6 +239,17 @@ sub file_handle ( $self, $key, $init = undef ) {
     return $self->_get_open_file_handle( $key, undef, $init );
 }
 
+=head2 keys
+
+This returns all files created.
+
+=cut
+
+sub keys ($self) {
+    my $files = $self->_files;
+    return [ keys $files->%* ];
+}
+
 =head2 files
 
 This returns all files created.
