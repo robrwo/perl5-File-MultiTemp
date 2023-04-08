@@ -1,4 +1,4 @@
-use v5.34;
+use v5.16;
 use Test::Most;
 
 use Scalar::Util qw/ openhandle refaddr /;
