@@ -1,6 +1,6 @@
 package File::MultiTemp;
 
-use v5.34;
+use v5.16;
 
 use Moo;
 
@@ -12,8 +12,6 @@ use Scalar::Util qw/ openhandle /;
 use Types::Common::String qw/ SimpleStr /;
 use Types::Standard       qw/ Bool CodeRef FileHandle HashRef StrMatch /;
 use Types::Path::Tiny     qw/ Dir File /;
-
-use experimental qw/ lexical_subs signatures /;
 
 use namespace::autoclean;
 
@@ -146,14 +144,14 @@ has init => (
 has _files => (
     is      => 'ro',
     isa     => HashRef [ File ],
-    builder => sub ($self) { return {} },
+    builder => sub { return {} },
     init_arg => undef,
 );
 
 has _file_handles => (
     is      => 'ro',
     isa     => HashRef [ FileHandle ],
-    builder => sub ($self) { return {} },
+    builder => sub { return {} },
     init_arg => undef,
 );
 
@@ -161,7 +159,8 @@ has _file_handles => (
 
 =cut
 
-sub _get_tempfile_args ( $self, $key ) {
+sub _get_tempfile_args {
+    my ($self, $key ) = @_;
 
     my $template;
 
@@ -178,7 +177,9 @@ sub _get_tempfile_args ( $self, $key ) {
 
 }
 
-sub _get_open_file_handle( $self, $key, $file = undef, $init = undef) {
+sub _get_open_file_handle {
+    my ($self, $key, $file, $init) = @_;
+
 
    my $fhs = $self->_file_handles;
    if ( my $fh = openhandle( $fhs->{$key} ) ) {
@@ -209,7 +210,8 @@ with the parameters documented in the L</init> function.
 
 =cut
 
-sub file ( $self, $key, $init = undef ) {
+sub file {
+    my ($self, $key, $init) = @_;
 
     my $files = $self->_files;
 
@@ -235,7 +237,8 @@ If the filehandle does not exist, then it will be re-opened in append mode.
 
 =cut
 
-sub file_handle ( $self, $key, $init = undef ) {
+sub file_handle {
+    my ($self, $key, $init) = @_;
     return $self->_get_open_file_handle( $key, undef, $init );
 }
 
@@ -245,7 +248,8 @@ This returns all files created.
 
 =cut
 
-sub keys ($self) {
+sub keys {
+    my ($self) = @_;
     my $files = $self->_files;
     return [ keys $files->%* ];
 }
@@ -256,7 +260,8 @@ This returns all files created.
 
 =cut
 
-sub files ($self) {
+sub files {
+    my ($self) = @_;
     my $files = $self->_files;
     return [ values $files->%* ];
 }
@@ -269,7 +274,8 @@ This is called automatically when the object is destroyed.
 
 =cut
 
-sub close($self) {
+sub close {
+    my ($self) = @_;
     my $fhs = $self->_file_handles;
     for my $kv ( pairs $fhs->%* ) {
         my ( $key, $fh ) = $kv->@*;
