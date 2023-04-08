@@ -66,7 +66,7 @@ This is optional.
 
 =attr has_template
 
-Returns true of L</template> is set.
+Returns true if L</template> is set.
 
 =cut
 
@@ -147,7 +147,7 @@ The file handle, which is an exclusive write lock on the file.
 
 =attr has_init
 
-Returns true of L</init> is set.
+Returns true if L</init> is set.
 
 =cut
 

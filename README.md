@@ -55,7 +55,7 @@ This is optional.
 
 ## has\_template
 
-Returns true of ["template"](#template) is set.
+Returns true if ["template"](#template) is set.
 
 ## suffix
 
@@ -99,7 +99,7 @@ The function is calle with the three arguments:
 
 ## has\_init
 
-Returns true of ["init"](#init) is set.
+Returns true if ["init"](#init) is set.
 
 # METHODS
 
