@@ -15,9 +15,11 @@ use Types::Common::String qw/ SimpleStr /;
 use Types::Standard       qw/ Bool CodeRef FileHandle HashRef StrMatch /;
 use Types::Path::Tiny     qw/ Dir File /;
 
+# RECOMMEND PREREQ: Type::Tiny::XS
 
 use namespace::autoclean;
 
+our $VERSION = 'v0.1.0';
 
 =head1 SYNOPSIS
 
