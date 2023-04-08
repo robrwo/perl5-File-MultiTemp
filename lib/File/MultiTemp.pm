@@ -19,7 +19,7 @@ use Types::Path::Tiny     qw/ Dir File /;
 
 use namespace::autoclean;
 
-our $VERSION = 'v0.1.2';
+our $VERSION = 'v0.1.3';
 
 =head1 SYNOPSIS
 
