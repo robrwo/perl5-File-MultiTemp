@@ -5,13 +5,12 @@ use Scalar::Util qw/ openhandle refaddr /;
 
 use File::MultiTemp;
 
-use experimental qw/ signatures /;
-
 my $files = File::MultiTemp->new(
     suffix => '.txt',
     template => 'file-KEY-XXXX', # There must be a minimum of 4 Xs
     unlink => 1,
-    init => sub($key, $path, $fh) {
+    init => sub {
+        my ($key, $path, $fh) = @_;
         my $tmp  = $path->cached_temp;
         my $name = $tmp->filename;
         like $name, qr/file-${key}/, 'filename has key';
