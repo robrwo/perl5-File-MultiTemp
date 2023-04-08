@@ -2,7 +2,7 @@ package File::MultiTemp;
 
 # ABSTRACT: manage a hash of temporary files
 
-use v5.16;
+use v5.14;
 
 use Moo;
 
