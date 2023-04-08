@@ -38,8 +38,8 @@ my @reports = $files->files->@*;
 
 This class maintains a hash reference of objects and opened filehandles.
 
-This is useful for maintaining several separate files, for example, several CSV reports based on company codes,
-especially in cases where grouping the data may require a lot of work for the database.
+This is useful for maintaining several separate files, for example, several reports based on codes where grouping the
+data may require a lot of work for the database.
 
 # ATTRIBUTES
 
