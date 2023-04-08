@@ -283,6 +283,11 @@ sub DEMOLISH {
     $self->close unless $is_global;
 }
 
+=head1 append:AUTHOR
+
+The initial development of this module was sponsored by Science Photo
+Library L<https://www.sciencephoto.com>.
+
 =head1 SEE ALSO
 
 L<File::Temp>
