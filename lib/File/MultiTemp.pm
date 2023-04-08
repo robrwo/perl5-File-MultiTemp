@@ -1,5 +1,7 @@
 package File::MultiTemp;
 
+# ABSTRACT: manage a hash of temporary files
+
 use v5.16;
 
 use Moo;
@@ -13,11 +15,9 @@ use Types::Common::String qw/ SimpleStr /;
 use Types::Standard       qw/ Bool CodeRef FileHandle HashRef StrMatch /;
 use Types::Path::Tiny     qw/ Dir File /;
 
+
 use namespace::autoclean;
 
-=head1 NAME
-
-File::MultiTemp - manage a hash of temporary files
 
 =head1 SYNOPSIS
 
@@ -52,9 +52,7 @@ This class maintains a hash reference of objects and opened filehandles.
 This is useful for maintaining several separate files, for example, several CSV reports based on company codes,
 especially in cases where grouping the data may require a lot of work for the database.
 
-=head1 ATTRIBUTES
-
-=head2 template
+=attr template
 
 This is the filename template that is passed to L<File::Temp>. It should have a string of at least four Xs in a row,
 which will be filled in with a unique string.
@@ -72,7 +70,7 @@ has template => (
     predicate => 1,
 );
 
-=head2 suffix
+=attr suffix
 
 This is the filename suffix that is passed to L<File::Temp>. This is optional.
 
@@ -84,7 +82,7 @@ has suffix => (
     predicate => 1,
 );
 
-=head2 dir
+=attr dir
 
 This is the base directory that is passed to L<File::Temp>. This is optional.
 
@@ -97,7 +95,7 @@ has dir => (
     predicate => 1,
 );
 
-=head2 unlink
+=attr unlink
 
 If this is true (default), then the files will be deleted after the object is destroyed.
 
@@ -109,7 +107,7 @@ has unlink => (
     default => 1,
 );
 
-=head2 init
+=attr init
 
 This is an optional function to initialise the file after it is created.
 
@@ -155,10 +153,6 @@ has _file_handles => (
     init_arg => undef,
 );
 
-=head1 METHODS
-
-=cut
-
 sub _get_tempfile_args {
     my ($self, $key ) = @_;
 
@@ -197,7 +191,7 @@ sub _get_open_file_handle {
    return $fh;
 }
 
-=head2 file
+=method file
 
   my $path = $files->file( $key, \&init );
 
@@ -227,7 +221,7 @@ sub file {
     return $file;
 }
 
-=head2 file_handle
+=method file_handle
 
   my $fh = $files->file_handle( $key, \&init );
 
@@ -242,7 +236,7 @@ sub file_handle {
     return $self->_get_open_file_handle( $key, undef, $init );
 }
 
-=head2 keys
+=method keys
 
 This returns all files created.
 
@@ -254,7 +248,7 @@ sub keys {
     return [ keys $files->%* ];
 }
 
-=head2 files
+=method files
 
 This returns all files created.
 
@@ -266,7 +260,7 @@ sub files {
     return [ values $files->%* ];
 }
 
-=head2 close
+=method close
 
 This closes all files that are open.
 
