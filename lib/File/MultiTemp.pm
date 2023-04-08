@@ -62,6 +62,10 @@ is suitable for a filename.
 
 This is optional.
 
+=attr has_template
+
+Returns true of L</template> is set.
+
 =cut
 
 has template => (
@@ -74,6 +78,10 @@ has template => (
 
 This is the filename suffix that is passed to L<File::Temp>. This is optional.
 
+=attr has_suffix
+
+Returns true if L</suffix> is set.
+
 =cut
 
 has suffix => (
@@ -85,6 +93,10 @@ has suffix => (
 =attr dir
 
 This is the base directory that is passed to L<File::Temp>. This is optional.
+
+=attr has_dir
+
+Returns true if L</dir> is set.
 
 =cut
 
@@ -130,6 +142,10 @@ You can use the C<cached_temp> method to access the original L<File::Temp> objec
 The file handle, which is an exclusive write lock on the file.
 
 =back
+
+=attr has_init
+
+Returns true of L</init> is set.
 
 =cut
 
@@ -282,6 +298,12 @@ sub DEMOLISH {
     my ($self, $is_global) = @_;
     $self->close unless $is_global;
 }
+
+=begin Pod::Coverage
+
+  DEMOLISH
+
+=end Pod::Coverage
 
 =head1 append:AUTHOR
 
