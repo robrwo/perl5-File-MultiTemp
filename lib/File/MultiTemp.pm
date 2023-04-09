@@ -45,7 +45,7 @@ our $VERSION = 'v0.1.3';
 
     $files->close;
 
-    my @reports = $files->files->@*;
+    my @reports = @{ $files->files };
 
 =head1 DESCRIPTION
 
@@ -263,7 +263,7 @@ This returns all files created.
 sub keys {
     my ($self) = @_;
     my $files = $self->_files;
-    return [ keys $files->%* ];
+    return [ keys %{ $files } ];
 }
 
 =method files
@@ -275,7 +275,7 @@ This returns all files created.
 sub files {
     my ($self) = @_;
     my $files = $self->_files;
-    return [ values $files->%* ];
+    return [ values %{ $files } ];
 }
 
 =method close
@@ -289,8 +289,8 @@ This is called automatically when the object is destroyed.
 sub close {
     my ($self) = @_;
     my $fhs = $self->_file_handles;
-    for my $kv ( pairs $fhs->%* ) {
-        my ( $key, $fh ) = $kv->@*;
+    for my $kv ( pairs %{ $fhs } ) {
+        my ( $key, $fh ) = @{ $kv };
         close($fh) if $fh;
         delete $fhs->{$key};
     }

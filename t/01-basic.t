@@ -48,7 +48,7 @@ cmp_deeply $keys, set(qw/ WWW XXX YYY /), "keys";
 
 my %found = map { $_ => 1 } (@$keys, 'ZZZ');
 
-for my $file ( $files->files->@* ) {
+for my $file ( @{ $files->files } ) {
     my @lines = $file->lines( { chomp => 1 } );
     delete @found{@lines};
 }

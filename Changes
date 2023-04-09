@@ -1,6 +1,8 @@
 Revision history for {{ $dist->name }}
 
 {{$NEXT}}
+  [Bug Fixes]
+  - Removed postderef syntax, which is only usable in more recent Perl versions than the declared minimum.
 
 v0.1.2    2023-04-08 12:19:19+01:00 Europe/London
   [Documentation]

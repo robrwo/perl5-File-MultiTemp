@@ -31,7 +31,7 @@ $csv->say( $fh, $row );
 
 $files->close;
 
-my @reports = $files->files->@*;
+my @reports = @{ $files->files };
 ```
 
 # DESCRIPTION
