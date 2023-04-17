@@ -7,7 +7,7 @@ use v5.14;
 use Moo;
 
 use Fcntl qw/ LOCK_EX /;
-use List::Util qw/ pairs /;
+use List::Util 1.29 qw/ pairs /;
 use Path::Tiny qw/ path /;
 use PerlX::Maybe qw/ maybe /;
 use Scalar::Util qw/ openhandle /;
