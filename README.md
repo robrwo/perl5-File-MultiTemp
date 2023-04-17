@@ -4,7 +4,7 @@ File::MultiTemp - manage a hash of temporary files
 
 # VERSION
 
-version v0.1.4
+version v0.1.5
 
 # SYNOPSIS
 
